@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/keezhisong.png" width="200px">
 
-[[github](https://github.com/KeeZhiSong)]]
+[[github](https://github.com/KeeZhiSong)]
 
 * Role: Developer
 * Responsibilities: Data 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/shrievarshanbaskar.png" width="200px">
 
-[github](https://github.com/shrievarshanbaskar)
+[[github](https://github.com/shrievarshanbaskar)]
 
 * Role: Developer
 * Responsibilities: Backend + UI
