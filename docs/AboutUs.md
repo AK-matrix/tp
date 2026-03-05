@@ -51,7 +51,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/therealniru.png" width="200px">
 
 [[github](http://github.com/therealniru)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -61,4 +60,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/r-a-y-y-a.png" width="200px">
 
 [[github](https://github.com/r-a-y-y-a)]
-[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Backend
