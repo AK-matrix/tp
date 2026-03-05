@@ -23,11 +23,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/keezhisong.png" width="200px">
 
-[[github](https://github.com/KeeZhiSong)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/KeeZhiSong)]]
 
 * Role: Developer
-* Responsibilities: Backend + UI
+* Responsibilities: Data 
 
 ### Johnny Doe
 
