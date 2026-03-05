@@ -23,20 +23,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/keezhisong.png" width="200px">
 
-[[github](https://github.com/KeeZhiSong)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/KeeZhiSong)]]
 
 * Role: Developer
-* Responsibilities: Backend + UI
+* Responsibilities: Data 
 
-### Johnny Doe
+### Kamath Arnav Santosh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ak-matrix.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/AK-matrix)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
 
 ### Shrievarshan Baskar
 
@@ -47,13 +46,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Backend + UI
 
-### James Doe
+### Niranjan Vijay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/therealniru.png" width="200px">
 
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/therealniru)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Rayson Yap 
+
+<img src="images/r-a-y-y-a.png" width="200px">
+
+[[github](https://github.com/r-a-y-y-a)]
+
+* Role: Developer
+* Responsibilities: Backend
