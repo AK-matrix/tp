@@ -55,3 +55,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Rayson Yap 
+
+<img src="images/r-a-y-y-a.png" width="200px">
+
+[[github](https://github.com/r-a-y-y-a)]
+[[portfolio](team/johndoe.md)]
