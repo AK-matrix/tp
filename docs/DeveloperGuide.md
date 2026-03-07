@@ -256,7 +256,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Requirements
+## **Appendix: Requirements**
 
 ### Product scope
 
