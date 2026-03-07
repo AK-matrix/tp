@@ -280,7 +280,6 @@ Priorities: High (must-have) - `* * *`, Medium (nice-to-have) - `* *`, Low (unli
 |----------|---------|------------------------------------------------------------------------------------|-----------------|
 | `* * *` | recruiter | add a candidate’s contact details                                                  | reach out to them later for a role. |
 | `* * *` | recruiter | view all candidate records                                                         | know exactly who is currently in my active talent pool. |
-**1. Add to User Stories (High Priority Section):**
 | `* * *` | recruiter | view the complete, detailed profile of a specific candidate | instantly read their full history (notes, tags, rejections) in one place before jumping on a call. |
 | `* * *` | recruiter | search for a candidate using known attributes (e.g., partial name, phone or email) | instantly locate their specific record even if I only remember a fragment of their details. |
 | `* * *` | recruiter | update a candidate’s information                                                   | ensure my communication records remain accurate and up-to-date. |
