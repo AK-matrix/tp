@@ -1,8 +1,6 @@
 package seedu.address.logic;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
@@ -17,7 +15,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
+                "Error: Duplicate parameter detected \u2014 multiple values for '%s' provided.";
 
     public static final String MESSAGE_REJECT_INVALID_INDEX =
             "Error: Invalid index. Please provide a valid positive integer. Usage: reject INDEX r/REASON";
@@ -35,10 +33,9 @@ public class Messages {
     public static String getErrorMessageForDuplicatePrefixes(Prefix... duplicatePrefixes) {
         assert duplicatePrefixes.length > 0;
 
-        Set<String> duplicateFields =
-                Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
+        String duplicateField = duplicatePrefixes[0].toString();
 
-        return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
+        return String.format(MESSAGE_DUPLICATE_FIELDS, duplicateField);
     }
 
     /**
@@ -50,11 +47,7 @@ public class Messages {
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getEmail());
         return builder.toString();
     }
 

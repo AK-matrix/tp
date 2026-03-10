@@ -11,8 +11,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Error: Invalid phone number. Phone number must contain only digits (with optional '+' prefix), "
+            + "and must be between 3 and 15 digits long.";
+    public static final String VALIDATION_REGEX = "^\\+?\\d{3,15}$";
     public final String value;
 
     /**
@@ -22,8 +23,9 @@ public class Phone {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        String trimmedPhone = phone.trim();
+        checkArgument(isValidPhone(trimmedPhone), MESSAGE_CONSTRAINTS);
+        value = trimmedPhone;
     }
 
     /**

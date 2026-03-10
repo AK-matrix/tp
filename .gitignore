@@ -25,3 +25,9 @@ docs/_site/
 
 .claude/
 docs/.idea/
+
+checkstyle.out
+prompt.md
+
+/bin/
+
