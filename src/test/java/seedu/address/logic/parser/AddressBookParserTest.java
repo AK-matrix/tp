@@ -22,7 +22,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RejectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.RejectionReason;
 import seedu.address.model.person.NamePhoneEmailContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -86,6 +88,14 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_reject() throws Exception {
+        RejectionReason reason = new RejectionReason("Failed interview");
+        RejectCommand command = (RejectCommand) parser.parseCommand(
+                RejectCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " r/Failed interview");
+        assertEquals(new RejectCommand(INDEX_FIRST_PERSON, reason), command);
     }
 
     @Test
