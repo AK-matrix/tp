@@ -19,6 +19,16 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
+    public static final String MESSAGE_REJECT_INVALID_INDEX =
+            "Error: Invalid index. Please provide a valid positive integer. Usage: reject INDEX r/REASON";
+    public static final String MESSAGE_REJECT_INDEX_OUT_OF_RANGE =
+            "Error: Index %1$d is out of range. The current list has %2$d candidate(s). "
+            + "Please provide an index between 1 and %2$d.";
+    public static final String MESSAGE_REJECT_INVALID_REASON =
+            "Error: Rejection reason cannot be empty and must not exceed 200 characters.";
+    public static final String MESSAGE_REJECT_INVALID_FORMAT =
+            "Invalid command format. Usage: reject INDEX r/REASON";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
