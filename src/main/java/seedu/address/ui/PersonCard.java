@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Status;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -40,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label rejectedTag;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,5 +58,14 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.getStatus() == Status.REJECTED) {
+            rejectedTag.setText("REJECTED");
+            rejectedTag.setStyle("-fx-background-color: #d9534f; -fx-text-fill: black; "
+                    + "-fx-font-family: 'Segoe UI Semibold'; -fx-font-size: 16px; "
+                    + "-fx-padding: 0 5 0 5; -fx-background-radius: 3;");
+            rejectedTag.setVisible(true);
+            rejectedTag.setManaged(true);
+        }
     }
 }

@@ -15,6 +15,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RejectionReason;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +31,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String status;
+    private final List<JsonAdaptedRejectionReason> rejectionReasons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +40,19 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("status") String status,
+            @JsonProperty("rejectionReasons") List<JsonAdaptedRejectionReason> rejectionReasons) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        this.status = status;
+        if (rejectionReasons != null) {
+            this.rejectionReasons.addAll(rejectionReasons);
         }
     }
 
@@ -56,6 +66,10 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        status = source.getStatus().name();
+        rejectionReasons.addAll(source.getRejectionReasons().stream()
+                .map(JsonAdaptedRejectionReason::new)
                 .collect(Collectors.toList()));
     }
 
@@ -103,7 +117,23 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Status modelStatus;
+        if (status == null) {
+            modelStatus = Status.NONE;
+        } else if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        } else {
+            modelStatus = Status.valueOf(status.toUpperCase());
+        }
+
+        final List<RejectionReason> modelRejectionReasons = new ArrayList<>();
+        for (JsonAdaptedRejectionReason reason : rejectionReasons) {
+            modelRejectionReasons.add(reason.toModelType());
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelStatus, modelRejectionReasons);
     }
 
 }

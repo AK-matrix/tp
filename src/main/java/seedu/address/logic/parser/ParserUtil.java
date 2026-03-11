@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RejectionReason;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,7 +44,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll("\\s+", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String reason} into a {@code RejectionReason}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reason} is invalid.
+     */
+    public static RejectionReason parseRejectionReason(String reason) throws ParseException {
+        requireNonNull(reason);
+        String trimmedReason = reason.trim();
+        if (!RejectionReason.isValidReason(trimmedReason)) {
+            throw new ParseException(RejectionReason.MESSAGE_CONSTRAINTS);
+        }
+        return new RejectionReason(trimmedReason);
     }
 }

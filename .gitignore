@@ -21,3 +21,13 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+
+.claude/
+docs/.idea/
+
+checkstyle.out
+prompt.md
+
+/bin/
+

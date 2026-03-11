@@ -261,72 +261,344 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+* Recruiters or founders in early-stage startups managing hiring without a formal Applicant Tracking System (ATS).
+* Personally interviews and follows up with candidates.
+* Frequently takes notes during or immediately after speaking to candidates.
+* Needs to revisit past applicants when new roles open.
+* Handles a moderate but growing number of contacts (up to 1,000).
+* Prefers fast, keyboard-based interaction and CLI (Command Line Interface) over slow, mouse-driven GUI applications.
+* Types quickly and values efficiency during active calls.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+Talently is a desktop-optimized, keyboard-driven contact management application that helps early-stage recruiters organize candidate details and interview contexts in one centralized place. It eliminates the friction of slow spreadsheet searches and scattered message histories, enabling rapid note-taking during live conversations and instant recall of past candidate interactions, ensuring no promising lead slips through the cracks.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must-have) - `* * *`, Medium (nice-to-have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​ | I want to …​                                                                       | So that I can…​ |
+|----------|---------|------------------------------------------------------------------------------------|-----------------|
+| `* * *` | recruiter | add a candidate’s contact details                                                  | reach out to them later for a role. |
+| `* * *` | recruiter | view all candidate records                                                         | know exactly who is currently in my active talent pool. |
+| `* * *` | recruiter | view the complete, detailed profile of a specific candidate | instantly read their full history (notes, tags, rejections) in one place before jumping on a call. |
+| `* * *` | recruiter | search for a candidate using known attributes (e.g., partial name, phone or email) | instantly locate their specific record even if I only remember a fragment of their details. |
+| `* * *` | recruiter | update a candidate’s information                                                   | ensure my communication records remain accurate and up-to-date. |
+| `* * *` | recruiter | remove candidate contacts that are invalid or requested removal                    | keep my database strictly clean and legally compliant. |
+| `* * *` | recruiter | record a rejection with a specific chronological reason                            | remember exactly why a candidate was previously unsuitable before engaging them for a new role. |
+| `* * *` | recruiter | assign tags (e.g., Frontend, Intern) to candidates                                 | easily segment and organize my candidate pool by role or technical skill. |
+| `* * *` | recruiter | record rapid notes about a candidate                                               | capture important impressions and context immediately after a conversation. |
+| `* *` | recruiter | archive candidates instead of removing them                                        | remove them from my active pool without permanently losing past interaction data. |
+| `* *` | recruiter | restore an archived candidate                                                      | recover their contact details and history when a suitable role reopens. |
+| `* *` | recruiter | filter candidates strictly by tags or status                                       | focus entirely on a specific hiring subset without visual clutter. |
+| `* *` | recruiter | sort candidates by date added                                                      | quickly review the most recent leads and fresh applicants in my database. |
+| `* *` | recruiter | apply a specific tag to a bulk group of filtered candidates                        | categorize a large batch of newly sourced leads instantly. |
+| `* *` | recruiter | create my own custom tags or categories                                            | organize candidates according to my startup's highly specific hiring needs. |
+| `* *` | recruiter | mark candidates as priority                                                        | easily visually identify whom I need to contact first when opening the application. |
+| `* *` | recruiter | read previously recorded interaction notes                                         | refresh my memory on the candidate's background before initiating a follow-up call. |
+| `* *` | recruiter | edit previously recorded notes                                                     | correct typos or update my observations upon further review. |
+| `* *` | recruiter | see a chronological interaction timeline (e.g., calls, notes, rejections)          | accurately reconstruct the entire history of my relationship with the candidate. |
+| `* *` | recruiter | record the source of a candidate (e.g., LinkedIn, Referral)                        | evaluate analytically which sourcing channels are yielding the best talent. |
+| `*` | recruiter | undo my last action                                                                | instantly recover from an accidental deletion or rapid typing error. |
+| `*` | recruiter | redo an action I previously undid                                                  | restore a reverted change without needing to retype it. |
+| `*` | recruiter | set a reminder to contact a candidate at a later date                              | ensure promising leads are followed up with at the exact right time. |
+| `*` | recruiter | mark a candidate strictly as 'Do Not Contact'                                      | definitively avoid reaching out to candidates who explicitly opted out or declined. |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Talently` and the **Actor** is the `recruiter`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Adding a candidate**
 
-**MSS**
+**Preconditions:** None.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User requests to add a candidate by providing their details.
+2. System validates the provided details.
+3. System creates the new candidate record and saves it.
+4. System informs the user that the candidate was added successfully.
+   Use case ends.
 
-    Use case ends.
+**Extensions:**
+* 2a. System detects missing mandatory fields or invalid formatting.
+    * 2a1. System informs the user of the formatting error and provides the correct command format.
+    * Use case ends.
+* 2b. System detects that the candidate already exists (e.g., duplicate email or phone).
+    * 2b1. System informs the user of the duplicate collision.
+    * Use case ends.
 
-**Extensions**
 
-* 2a. The list is empty.
+**Use case: UC2 - Removing a candidate**
 
-  Use case ends.
+**Preconditions:** The candidate exists in the system.
 
-* 3a. The given index is invalid.
+**MSS:**
+1. User requests to list candidates.
+2. System shows a list of candidates.
+3. User requests to remove a specific candidate from the list.
+4. System requests confirmation to prevent accidental data loss.
+5. User confirms the removal.
+6. System removes the candidate and updates the list.
+7. System informs the user of the successful removal.
+   Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Extensions:**
+* 3a. User provides an invalid identifier (e.g., out of bounds, incorrect format).
+    * 3a1. System informs the user of the error and provides usage instructions.
+    * Use case ends.
+* 5a. User cancels the removal at the confirmation prompt.
+    * 5a1. System aborts the operation.
+    * Use case ends.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC3 - Recording a rejection with reason**
+
+**Preconditions:** The candidate exists in the system and is currently active.
+
+**MSS:**
+1. User requests to list active candidates.
+2. System shows a list of active candidates.
+3. User requests to reject a specific candidate, providing a rejection reason.
+4. System validates the identifier and the reason.
+5. System updates the candidate's status to REJECTED.
+6. System appends the reason to the candidate’s rejection history.
+7. System informs the user of the successful update.
+   Use case ends.
+
+**Extensions:**
+* 3a. User provides an invalid identifier.
+    * 3a1. System informs the user of the error.
+    * Use case ends.
+* 3b. Target candidate is currently archived.
+    * 3b1. System informs the user that archived candidates cannot be modified.
+    * Use case ends.
+* 4a. User provides an invalid reason (e.g., empty string or exceeding maximum character limit).
+    * 4a1. System maintains the candidate's original status and informs the user of the validation error.
+    * Use case ends.
+* 4b. System detects the exact same rejection reason being entered sequentially for this candidate.
+    * 4b1. System warns the user regarding the duplicate entry and asks for confirmation.
+    * 4b2. User confirms intent to proceed.
+    * Use case resumes at step 5.
+
+
+**Use case: UC4 - Archiving a candidate**
+
+**Preconditions:** The candidate exists and is active.
+
+**MSS:**
+1. User requests to archive a specific candidate.
+2. System archives the candidate.
+3. System updates the list of active candidates.
+4. System informs the user of the successful archival.
+   Use case ends.
+
+**Extensions:**
+* 1a. User specifies an invalid identifier.
+    * 1a1. System informs the user of the error.
+    * Use case ends.
+* 1b. The targeted candidate is already in the archive.
+    * 1b1. System informs the user that the candidate is already archived.
+    * Use case ends.
+
+
+**Use case: UC5 - Filtering candidates by tags**
+
+**Preconditions:** The system contains at least one candidate with tags.
+
+**MSS:**
+1. User requests to filter the candidate list by specifying one or more tags.
+2. System searches the database for candidates matching the specified tag(s).
+3. System shows the matching candidates.
+   Use case ends.
+
+**Extensions:**
+* 1a. User specifies an invalid tag format.
+    * 1a1. System informs the user of the formatting error.
+    * Use case ends.
+* 1b. The specified tag does not exist in the system's tag pool.
+    * 1b1. System informs the user that the tag does not exist.
+    * Use case ends.
+* 2a. No candidates match the specified tag(s).
+    * 2a1. System informs the user that no matching candidates were found.
+    * Use case ends.
+
+
+**Use case: UC6 - Updating candidate information**
+
+**Preconditions:** The target candidate already exists.
+
+**MSS:**
+1. User requests to edit specific fields of a candidate.
+2. System validates the newly provided information.
+3. System updates the candidate record and saves the changes.
+4. System informs the user of the successful update.
+   Use case ends.
+
+**Extensions:**
+* 1a. User specifies an invalid identifier.
+    * 1a1. System informs the user of the error.
+    * Use case ends.
+* 2a. System detects invalid formatting in the newly provided fields.
+    * 2a1. System informs the user of the formatting error.
+    * Use case ends.
+* 2b. System detects the updated details conflict with another existing candidate (duplicate collision).
+    * 2b1. System aborts the update and informs the user of the duplicate entry.
+    * Use case ends.
+
+
+**Use case: UC7 - Finding a candidate by attributes**
+
+**Preconditions:** Candidates exist in the system.
+
+**MSS:**
+1. User requests to search for candidates based on a known attribute.
+2. System filters the candidate list to include only those matching the provided query.
+3. System shows the matching candidates.
+   Use case ends.
+
+**Extensions:**
+* 1a. User provides an empty or invalid search query.
+    * 1a1. System informs the user of the correct command format.
+    * Use case ends.
+* 2a. No candidates match the search query.
+    * 2a1. System informs the user that the result set is empty.
+    * Use case ends.
+
+
+**Use case: UC8 - Assigning a tag to a candidate**
+
+**Preconditions:** The candidate exists in the system.
+
+**MSS:**
+1. User requests to add a specific tag to a candidate.
+2. System validates the tag against the existing tag pool.
+3. System appends the tag to the candidate's profile.
+4. System informs the user of the success.
+   Use case ends.
+
+**Extensions:**
+* 1a. User specifies an invalid identifier.
+    * 1a1. System informs the user of the error.
+    * Use case ends.
+* 2a. User specifies an invalid tag format.
+    * 2a1. System informs the user of the formatting error.
+    * Use case ends.
+* 2b. The specified tag does not exist in the system's tag pool.
+    * 2b1. System informs the user that the tag must be created before it can be assigned.
+    * Use case ends.
+* 2c. The candidate already has the specified tag (case-insensitive).
+    * 2c1. System ignores the duplicate tag and informs the user.
+    * Use case ends.
+
+
+**Use case: UC9 - Restoring an archived candidate**
+
+**Preconditions:** The target candidate is currently in the archive.
+
+**MSS:**
+1. User requests to view the list of archived candidates.
+2. System shows the archived candidates.
+3. User requests to restore a specific candidate.
+4. System restores the candidate to the active list.
+5. System informs the user of the successful restoration.
+   Use case ends.
+
+**Extensions:**
+* 3a. User specifies an invalid identifier.
+    * 3a1. System informs the user of the error.
+    * Use case ends.
+
+
+**Use case: UC10 - Sorting candidates by date added**
+
+**Preconditions:** Multiple candidates exist in the active list.
+
+**MSS:**
+1. User requests to sort the candidate list by date added.
+2. System rearranges the list chronologically.
+3. System shows the newly sorted list.
+   Use case ends.
+
+**Extensions:**
+* 1a. The active list contains zero candidates.
+    * 1a1. System informs the user that there are no candidates to sort.
+    * Use case ends.
+
+
+**Use case: UC11 - Applying a tag in bulk**
+
+**Preconditions:** A filtered list of multiple candidates is currently shown.
+
+**MSS:**
+1. User requests to apply a specific tag to all currently shown candidates.
+2. System validates the tag against the existing tag pool.
+3. System applies the tag to each candidate's profile.
+4. System informs the user of the number of candidates successfully tagged.
+   Use case ends.
+
+**Extensions:**
+* 2a. User specifies an invalid tag format.
+    * 2a1. System informs the user of the formatting error.
+    * Use case ends.
+* 2b. The specified tag does not exist in the system's tag pool.
+    * 2b1. System informs the user that the tag must be created first.
+    * Use case ends.
+* 3a. A candidate in the list already possesses the tag.
+    * 3a1. System skips duplicating the tag for that specific candidate and continues tagging the rest.
+    * Use case resumes at step 4.
+
+
+**Use case: UC12 - Undoing the previous action**
+
+**Preconditions:** The user has performed at least one modifying command during the current session.
+
+**MSS:**
+1. User requests to undo their previous action.
+2. System restores the application data to the state immediately preceding the last modifying command.
+3. System informs the user of the action that was successfully undone.
+   Use case ends.
+
+**Extensions:**
+* 1a. There are no previous modifying actions to undo in the current session.
+    * 1a1. System informs the user that there is nothing to undo.
+    * Use case ends.
+
+**Use case: UC13 - Viewing a candidate's full profile**
+
+**Preconditions:** Candidates exist in the system and are currently shown in a list.
+
+**MSS:**
+1. User requests to view the full details of a specific candidate.
+2. System validates the identifier.
+3. System shows the complete profile of the candidate, including all contact details, tags, notes, and rejection history.
+   Use case ends.
+
+**Extensions:**
+* 1a. User provides an invalid identifier (e.g., out of bounds, incorrect format).
+    * 1a1. System informs the user of the error and provides usage instructions.
+    * Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The system must run flawlessly without requiring an installer on any mainstream Operating System (Windows, macOS, Linux), provided that exactly **Java 17** is installed. The entire application must be packaged as a single portable JAR file not exceeding `100 MB` in size.
+2. The application must operate as a standalone, single-user system. It must strictly eschew the use of a Database Management System (DBMS) or any remote server dependencies. All data must be saved locally in a human-editable text file (JSON format) to allow advanced users manual access to their records.
+3. The system must be capable of holding up to `1,000` candidate records (including their Rejection History lists and tags) without exceeding `250 MB` of memory footprint or showing noticeable sluggishness in search and filtering operations.
+4. The application must prioritize CLI input. A target user with a fast typing speed (60+ WPM) should be able to execute core workflows (e.g., adding a candidate, rejecting a candidate with a reason) entirely via text commands significantly faster than executing the equivalent actions in a standard mouse-driven GUI.
+5. All standard data manipulation and retrieval commands must execute, persist to the local file, and update the UI within `200` milliseconds under normal load to prevent disruption of the user's typing flow.
+6. The system must automatically save data locally after every mutating command. If a command fails validation halfway through execution (e.g., valid identifier but invalid rejection reason), the system state must remain entirely unchanged to prevent corrupted data.
+7. The Graphical User Interface (GUI) must render perfectly without resolution-related artifacts for standard screen resolutions of `1920x1080` (at 100% and 125% scales) and remain fully usable at resolutions of `1280x720` (at 150% scale).
+8. The system must function completely independently of an internet connection, ensuring 100% feature availability during automated testing and offline usage.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Applicant Tracking System (ATS):** A heavy, enterprise-level software application that enables the electronic handling of recruitment and hiring needs. Talently serves as a lightweight, developer-friendly alternative to this.
+* **Candidate:** A person whose details and interaction history are tracked within the system for recruitment purposes.
+* **Archive:** A state where a candidate record is hidden from the primary active list but remains safely stored in the system for future retrieval.
+* **Rejection History:** A chronological list of reasons attached to a candidate detailing why they were previously passed over for roles, allowing recruiters to maintain context across multiple hiring cycles.
+* **Tag:** A user-defined keyword or label attached to a candidate (e.g., "Senior", "Java") used for quick categorization and filtering.
+* **CLI (Command Line Interface):** A text-based user interface used to interact with the software by typing commands rather than clicking graphical elements.
+* **Identifier:** The reference used by the recruiter to execute commands on a specific candidate (often an index number representing their position in the current list).
+* **JSON (JavaScript Object Notation):** A lightweight, text-based data format used by the system to save and load candidate records locally in a human-readable format.
+* **Mainstream OS:** Windows, Linux, macOS.
 
 --------------------------------------------------------------------------------------------------------------------
 
