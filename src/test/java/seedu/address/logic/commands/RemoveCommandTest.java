@@ -56,7 +56,7 @@ public class RemoveCommandTest {
         Person personToRemove = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_PERSON_SUCCESS,
                 Messages.format(personToRemove));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
