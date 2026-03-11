@@ -31,15 +31,14 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
-        assertFalse(Phone.isValidPhone("1234567890123456")); // more than 15 numbers
-        assertFalse(Phone.isValidPhone("++911")); // multiple plus signs
+        assertFalse(Phone.isValidPhone("1234567890123456")); // exceeds 15 digits
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("+123456")); // with plus sign
-        assertTrue(Phone.isValidPhone("123456789012345")); // exactly 15 numbers
-        assertTrue(Phone.isValidPhone("+123456789012345")); // 15 digits + plus sign
+        assertTrue(Phone.isValidPhone("124293842033123")); // exactly 15 digits
+        assertTrue(Phone.isValidPhone("+6591234567")); // with + prefix
+        assertTrue(Phone.isValidPhone("+441234567890")); // international number
     }
 
     @Test

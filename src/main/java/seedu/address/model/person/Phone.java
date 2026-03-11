@@ -11,9 +11,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Error: Invalid phone number. Phone number must contain only digits (with optional '+' prefix), "
-            + "and must be between 3 and 15 digits long.";
-    public static final String VALIDATION_REGEX = "^\\+?\\d{3,15}$";
+            "Error: Invalid phone number. Phone number must contain only digits "
+            + "(with optional '+' prefix), and must be between 3 and 15 digits long.";
+    public static final String VALIDATION_REGEX = "\\+?\\d{3,15}";
     public final String value;
 
     /**

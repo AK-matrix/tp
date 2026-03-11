@@ -10,10 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Error: Invalid name. Name must contain only letters, spaces, hyphens, apostrophes, periods, and slashes, "
-            + "and must be between 1 and 100 characters.";
+            "Error: Invalid name. Name must contain only letters, spaces, hyphens, "
+            + "apostrophes, periods, and slashes, and must be between 1 and 100 characters.";
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z\\-'./ ]+$";
+    public static final int MAX_LENGTH = 100;
+
+    /*
+     * Allows alphabetical characters, spaces, hyphens, apostrophes, periods, and slashes.
+     * Must start with a letter.
+     */
+    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z \\-'./]*";
 
     public final String fullName;
 
@@ -33,7 +39,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.trim().length() >= 1 && test.length() <= 100 && test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
 

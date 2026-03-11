@@ -9,10 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    public static final String MESSAGE_CONSTRAINTS = "Error: Invalid email address. "
-            + "Please provide a valid email in the format: example@domain.com";
-    private static final String SPECIAL_CHARACTERS = "+_.-";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Error: Invalid email address. Please provide a valid email in the format: example@domain.com";
+    public static final int MAX_LENGTH = 254;
 
+    private static final String SPECIAL_CHARACTERS = "+_.-";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -41,7 +42,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.length() <= 254 && test.matches(VALIDATION_REGEX);
+        return test.length() <= MAX_LENGTH && test.matches(VALIDATION_REGEX);
     }
 
     @Override

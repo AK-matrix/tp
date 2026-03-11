@@ -14,13 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a candidate to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -35,8 +35,19 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+
+    public static final String MESSAGE_MISSING_NAME =
+            "Error: Name is required. Usage: add n/NAME p/PHONE e/EMAIL a/ADDRESS";
+    public static final String MESSAGE_MISSING_PHONE =
+            "Error: Phone number is required. Usage: add n/NAME p/PHONE e/EMAIL a/ADDRESS";
+    public static final String MESSAGE_MISSING_EMAIL =
+            "Error: Email is required. Usage: add n/NAME p/PHONE e/EMAIL a/ADDRESS";
+    public static final String MESSAGE_MISSING_ADDRESS =
+            "Error: Address is required. Usage: add n/NAME p/PHONE e/EMAIL a/ADDRESS";
+    public static final String MESSAGE_MISSING_ALL =
+            "Error: Missing required parameters. Usage: add n/NAME p/PHONE e/EMAIL a/ADDRESS";
 
     private final Person toAdd;
 

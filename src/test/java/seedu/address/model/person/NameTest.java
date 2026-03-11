@@ -28,17 +28,21 @@ public class NameTest {
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters besides allowed ones
-        String longName = "a".repeat(101);
-        assertFalse(Name.isValidName(longName)); // > 100 characters
-        assertFalse(Name.isValidName("12345")); // numbers only are invalid now
-        assertFalse(Name.isValidName("peter the 2nd")); // alphanumeric characters containing numbers
+        assertFalse(Name.isValidName("peter*")); // contains special characters
+        assertFalse(Name.isValidName("John123")); // contains digits
+        assertFalse(Name.isValidName("John@Doe")); // contains @
+        assertFalse(Name.isValidName("12345")); // numbers only
+        assertFalse(Name.isValidName("a".repeat(101))); // exceeds 100 chars
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("Capital Peter")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr Second")); // long names (up to 100)
-        assertTrue(Name.isValidName("O'Connor-Smith. /name")); // allowed symbols
+        assertTrue(Name.isValidName("peter jack")); // alphabets and spaces
+        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(Name.isValidName("David Roger Jackson Ray Jr")); // long names
+        assertTrue(Name.isValidName("O'Brien")); // apostrophe
+        assertTrue(Name.isValidName("Jean-Luc")); // hyphen
+        assertTrue(Name.isValidName("S. Kumar")); // period
+        assertTrue(Name.isValidName("Ravi S/O Muthu")); // slash
+        assertTrue(Name.isValidName("a".repeat(100))); // exactly 100 chars
     }
 
     @Test
