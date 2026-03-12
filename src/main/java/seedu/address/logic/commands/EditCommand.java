@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -16,6 +17,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -34,14 +36,16 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL]\n"
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_ADDRESS + "Clementi Ave 2";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Candidate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "Error: At least one field to edit must be "
-            + "provided (n/, p/, or e/).";
+            + "provided (n/, p/, e/, or a/).";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -112,8 +116,9 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, personToEdit.getAddress(),
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 personToEdit.getTags(), personToEdit.getStatus(), personToEdit.getRejectionReasons());
     }
 
@@ -149,6 +154,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Address address;
 
         public EditPersonDescriptor() {}
 
@@ -160,13 +166,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setAddress(toCopy.address);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -193,6 +200,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -207,7 +222,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email);
+                    && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(address, otherEditPersonDescriptor.address);
         }
 
         @Override
@@ -216,6 +232,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("address", address)
                     .toString();
         }
     }
