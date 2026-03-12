@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
 import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.SortDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NamePhoneEmailContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -111,5 +112,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortDateCommand.COMMAND_WORD + " date o/asc") instanceof SortDateCommand);
+        assertTrue(parser.parseCommand(SortDateCommand.COMMAND_WORD + " date o/desc") instanceof SortDateCommand);
     }
 }

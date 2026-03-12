@@ -116,7 +116,8 @@ public class RejectCommand extends Command {
                 personToReject.getAddress(),
                 personToReject.getTags(),
                 Status.REJECTED,
-                updatedReasons
+                updatedReasons,
+                personToReject.getDateAdded()
         );
     }
 

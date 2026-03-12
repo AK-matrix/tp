@@ -24,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DATE_ADDED = "12/03/2026 20:11 +0800";
 
     private Name name;
     private Phone phone;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Status status;
     private List<RejectionReason> rejectionReasons;
+    private seedu.address.model.person.DateAdded dateAdded;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +46,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         status = Status.NONE;
         rejectionReasons = new ArrayList<>();
+        dateAdded = new seedu.address.model.person.DateAdded(DEFAULT_DATE_ADDED);
     }
 
     /**
@@ -57,6 +60,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         status = personToCopy.getStatus();
         rejectionReasons = new ArrayList<>(personToCopy.getRejectionReasons());
+        dateAdded = personToCopy.getDateAdded();
     }
 
     /**
@@ -108,6 +112,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code DateAdded} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDateAdded(String dateAdded) {
+        this.dateAdded = new seedu.address.model.person.DateAdded(dateAdded);
+        return this;
+    }
+
+    /**
      * Sets the {@code rejectionReasons} of the {@code Person} that we are building.
      */
     public PersonBuilder withRejectionReasons(String ... reasons) {
@@ -127,7 +139,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, status, rejectionReasons);
+        return new Person(name, phone, email, address, tags, status, rejectionReasons, dateAdded);
     }
 
 }

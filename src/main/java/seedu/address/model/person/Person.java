@@ -28,22 +28,23 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
     private final List<RejectionReason> rejectionReasons = new ArrayList<>();
+    private final DateAdded dateAdded;
 
     /**
      * Every field must be present and not null.
-     * Status defaults to NONE with an empty rejection reasons list.
+     * Status defaults to NONE with an empty rejection reasons list and DateAdded as current time.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, Status.NONE, new ArrayList<>());
+        this(name, phone, email, address, tags, Status.NONE, new ArrayList<>(), new DateAdded());
     }
 
     /**
-     * Full constructor with status and rejection reasons.
+     * Full constructor with status, rejection reasons, and date added.
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Status status, List<RejectionReason> rejectionReasons) {
-        requireAllNonNull(name, phone, email, address, tags, status, rejectionReasons);
+                  Status status, List<RejectionReason> rejectionReasons, DateAdded dateAdded) {
+        requireAllNonNull(name, phone, email, address, tags, status, rejectionReasons, dateAdded);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +52,7 @@ public class Person {
         this.tags.addAll(tags);
         this.status = status;
         this.rejectionReasons.addAll(rejectionReasons);
+        this.dateAdded = dateAdded;
     }
 
     public Name getName() {
@@ -87,6 +89,10 @@ public class Person {
      */
     public List<RejectionReason> getRejectionReasons() {
         return Collections.unmodifiableList(rejectionReasons);
+    }
+
+    public DateAdded getDateAdded() {
+        return dateAdded;
     }
 
     /**
@@ -150,6 +156,7 @@ public class Person {
                 .add("tags", tags)
                 .add("status", status)
                 .add("rejectionReasons", rejectionReasons)
+                .add("dateAdded", dateAdded)
                 .toString();
     }
 

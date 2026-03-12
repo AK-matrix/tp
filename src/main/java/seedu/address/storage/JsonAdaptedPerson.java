@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String status;
     private final List<JsonAdaptedRejectionReason> rejectionReasons = new ArrayList<>();
+    private final String dateAdded;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +43,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("status") String status,
-            @JsonProperty("rejectionReasons") List<JsonAdaptedRejectionReason> rejectionReasons) {
+            @JsonProperty("rejectionReasons") List<JsonAdaptedRejectionReason> rejectionReasons,
+            @JsonProperty("dateAdded") String dateAdded) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +56,7 @@ class JsonAdaptedPerson {
         if (rejectionReasons != null) {
             this.rejectionReasons.addAll(rejectionReasons);
         }
+        this.dateAdded = dateAdded;
     }
 
     /**
@@ -71,6 +74,7 @@ class JsonAdaptedPerson {
         rejectionReasons.addAll(source.getRejectionReasons().stream()
                 .map(JsonAdaptedRejectionReason::new)
                 .collect(Collectors.toList()));
+        dateAdded = source.getDateAdded().value;
     }
 
     /**
@@ -132,8 +136,17 @@ class JsonAdaptedPerson {
             modelRejectionReasons.add(reason.toModelType());
         }
 
+        final seedu.address.model.person.DateAdded modelDateAdded;
+        if (dateAdded == null) {
+            modelDateAdded = new seedu.address.model.person.DateAdded();
+        } else if (!seedu.address.model.person.DateAdded.isValidDateAdded(dateAdded)) {
+            throw new IllegalValueException(seedu.address.model.person.DateAdded.MESSAGE_CONSTRAINTS);
+        } else {
+            modelDateAdded = new seedu.address.model.person.DateAdded(dateAdded);
+        }
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelStatus, modelRejectionReasons);
+                modelStatus, modelRejectionReasons, modelDateAdded);
     }
 
 }

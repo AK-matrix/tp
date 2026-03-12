@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label rejectedTag;
+    @FXML
+    private Label dateAdded;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,5 +69,6 @@ public class PersonCard extends UiPart<Region> {
             rejectedTag.setVisible(true);
             rejectedTag.setManaged(true);
         }
+        dateAdded.setText("added on: " + person.getDateAdded().getDisplayFormat());
     }
 }
