@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tag names must be alphanumeric, contain no spaces, and be between 1\u201330 characters.";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{1,30}$";
 
     public final String tagName;
 
@@ -44,12 +45,13 @@ public class Tag {
         }
 
         Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        // Case-insensitive comparison
+        return tagName.toLowerCase().equals(otherTag.tagName.toLowerCase());
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tagName.toLowerCase().hashCode();
     }
 
     /**

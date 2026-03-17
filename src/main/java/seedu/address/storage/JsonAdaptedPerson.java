@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -80,12 +81,21 @@ class JsonAdaptedPerson {
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
+     * @param masterAddressBook the master address book to verify tags against
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Person toModelType(AddressBook masterAddressBook) throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            Tag parsedTag = tag.toModelType();
+            if (!masterAddressBook.hasTag(parsedTag)) {
+                throw new IllegalValueException("Candidate contains a tag that does not exist in the master tag list.");
+            }
+            Tag canonicalTag = masterAddressBook.getTagList().stream()
+                    .filter(t -> t.equals(parsedTag))
+                    .findFirst()
+                    .get();
+            personTags.add(canonicalTag);
         }
 
         if (name == null) {
