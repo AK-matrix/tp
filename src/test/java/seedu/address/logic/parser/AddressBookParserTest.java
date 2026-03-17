@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CreateTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -101,6 +102,13 @@ public class AddressBookParserTest {
         RejectCommand command = (RejectCommand) parser.parseCommand(
                 RejectCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " r/Failed interview");
         assertEquals(new RejectCommand(INDEX_FIRST_PERSON, reason), command);
+    }
+
+    @Test
+    public void parseCommand_createtag() throws Exception {
+        CreateTagCommand command = (CreateTagCommand) parser.parseCommand(
+                CreateTagCommand.COMMAND_WORD + " t/Frontend");
+        assertEquals(new CreateTagCommand(new seedu.address.model.tag.Tag("Frontend")), command);
     }
 
     @Test

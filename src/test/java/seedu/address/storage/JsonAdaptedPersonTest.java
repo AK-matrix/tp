@@ -142,5 +142,12 @@ public class JsonAdaptedPersonTest {
         BENSON.getTags().forEach(ab::addTag);
         assertThrows(IllegalValueException.class, () -> person.toModelType(ab));
     }
+    @Test
+    public void toModelType_tagNotInMasterList_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
+        AddressBook ab = new AddressBook();
+        // Master list is empty, but person in JSON has tags
+        assertThrows(IllegalValueException.class, () -> person.toModelType(ab));
+    }
 
 }

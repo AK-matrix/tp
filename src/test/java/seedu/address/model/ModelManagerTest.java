@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NamePhoneEmailContainsKeywordsPredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -86,6 +87,37 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasTag_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTag(null));
+    }
+
+    @Test
+    public void hasTag_tagNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTag(new Tag("Frontend")));
+    }
+
+    @Test
+    public void hasTag_tagInAddressBook_returnsTrue() {
+        modelManager.addTag(new Tag("Frontend"));
+        assertTrue(modelManager.hasTag(new Tag("Frontend")));
+    }
+
+    @Test
+    public void addTag_validTag_tagAdded() {
+        Tag tag = new Tag("Backend");
+        modelManager.addTag(tag);
+        assertTrue(modelManager.hasTag(tag));
+    }
+
+    @Test
+    public void deleteTag_existingTag_tagRemoved() {
+        Tag tag = new Tag("DevOps");
+        modelManager.addTag(tag);
+        modelManager.deleteTag(tag);
+        assertFalse(modelManager.hasTag(tag));
     }
 
     @Test
