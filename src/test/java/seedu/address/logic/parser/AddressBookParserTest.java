@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CreateTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,6 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.SortDateCommand;
+import seedu.address.logic.commands.TagPoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NamePhoneEmailContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -105,10 +105,12 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_createtag() throws Exception {
-        CreateTagCommand command = (CreateTagCommand) parser.parseCommand(
-                CreateTagCommand.COMMAND_WORD + " t/Frontend");
-        assertEquals(new CreateTagCommand(new seedu.address.model.tag.Tag("Frontend")), command);
+    public void parseCommand_tagpool() throws Exception {
+        TagPoolCommand command = (TagPoolCommand) parser.parseCommand(
+                TagPoolCommand.COMMAND_WORD + " a/Frontend");
+        assertEquals(new TagPoolCommand(
+                java.util.List.of(new seedu.address.model.tag.Tag("Frontend")),
+                java.util.Collections.emptyList()), command);
     }
 
     @Test

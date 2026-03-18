@@ -292,7 +292,7 @@ Priorities: High (must-have) - `* * *`, Medium (nice-to-have) - `* *`, Low (unli
 | `* *` | recruiter | filter candidates strictly by tags or status                                       | focus entirely on a specific hiring subset without visual clutter. |
 | `* *` | recruiter | sort candidates by date added                                                      | quickly review the most recent leads and fresh applicants in my database. |
 | `* *` | recruiter | apply a specific tag to a bulk group of filtered candidates                        | categorize a large batch of newly sourced leads instantly. |
-| `* *` | recruiter | create my own custom tags or categories                                            | organize candidates according to my startup's highly specific hiring needs. |
+| `* *` | recruiter | rapidly create new system tags and delete obsolete ones in bulk                    | organize candidates according to my startup's highly specific hiring needs. |
 | `* *` | recruiter | mark candidates as priority                                                        | easily visually identify whom I need to contact first when opening the application. |
 | `* *` | recruiter | read previously recorded interaction notes                                         | refresh my memory on the candidate's background before initiating a follow-up call. |
 | `* *` | recruiter | edit previously recorded notes                                                     | correct typos or update my observations upon further review. |
